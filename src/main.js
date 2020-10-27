@@ -72,6 +72,8 @@ var heimdall = new Heimdall({
 });
 global.heimdall = heimdall;
 
+global.installConfig = fs.readJsonSync("../santoni.json");
+
 //==============================================================================
 // PARSE COMMAND-LINE ARGUMENTS
 //==============================================================================
@@ -101,7 +103,7 @@ cli
   .option("-D, --debug", "Enable debugging tools", undefined, "false")
   .parse(process.argv);
 
-if (cli.file) {
+/*if (cli.file) {
   try {
     global.installConfig = fs.readJsonSync(
       path.isAbsolute(cli.file) ? cli.file : path.join(process.cwd(), cli.file)
@@ -109,7 +111,7 @@ if (cli.file) {
   } catch (error) {
     throw new Error(`failed to read config file ${cli.file}: ${error}`);
   }
-}
+}*/
 
 global.installProperties = {
   device: global.installConfig ? global.installConfig.codename : cli.device,
